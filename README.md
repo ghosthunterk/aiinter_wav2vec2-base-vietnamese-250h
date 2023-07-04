@@ -123,7 +123,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-2. import libraries
+2. Import libraries
    ```sh
    from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
    import os, zipfile
@@ -138,11 +138,11 @@ _Below is an example of how you can instruct your audience on installing and set
    import flask
    from flask import request
    ```
-3. set device
+3. Set device
    ```sh
    DEVICE = "cuda"
    ```
-4. load model and tokenizer
+4. Load model and tokenizer
    ```sh
    cache_dir = './cache/'
    processor = Wav2Vec2Processor.from_pretrained("nguyenvulebinh/wav2vec2-base-vietnamese-250h")
@@ -153,7 +153,7 @@ _Below is an example of how you can instruct your audience on installing and set
      zip_ref.extractall(cache_dir)
    lm_file = cache_dir + 'vi_lm_4grams.bin'
    ```
-3. set device
+5. Load n-gram Language Model
    ```sh
    def get_decoder_ngram_model(tokenizer, ngram_lm_path):
      vocab_dict = tokenizer.get_vocab()
@@ -177,17 +177,58 @@ _Below is an example of how you can instruct your audience on installing and set
 
    ngram_lm_model = get_decoder_ngram_model(processor.tokenizer, lm_file)
    ```
-3. set device
+6. Define function to read in sound file
    ```sh
-   DEVICE = "cuda"
+   def map_to_array(batch):
+       speech, sampling_rate = sf.read(batch["file"])
+       batch["speech"] = speech
+       batch["sampling_rate"] = sampling_rate
+       return batch
    ```
-3. set device
+7. Convert .mp3 and .wav audio to correct format for model (16000hz, mono channel, .wav) and save as new file
    ```sh
-   DEVICE = "cuda"
+   def convert_audio(audio_path):
+       if "-16k.wav" in audio_path:
+           return audio_path
+       if "mp3" in audio_path:
+           new_audio_path = audio_path.replace(".mp3","-16k.wav")
+       else:
+           new_audio_path = audio_path.replace(".wav","-16k.wav")
+       subprocess.call(["ffmpeg", "-y", "-i", audio_path, "-ar", "16000", "-ac", "1", new_audio_path])
+       #data, samplerate = soundfile.read(audio_path)
+       #soundfile.write(new_audio_path, data, samplerate, subtype='PCM_16')
+       return new_audio_path
    ```
-3. set device
+8. Speech-To-Text function (read in audio file path)
    ```sh
-   DEVICE = "cuda"
+   def speech_to_text(audio_path):
+       #read soundfiles
+       ds = map_to_array({
+           "file": audio_path
+       })
+       # infer model
+       input_values = processor(
+           ds["speech"], 
+           sampling_rate=ds["sampling_rate"], 
+           return_tensors="pt"
+       ).input_values.to(DEVICE)
+       model.to(DEVICE)
+       logits = model(input_values).logits[0]
+    
+       # decode ctc output with greedy decode
+       #pred_ids = torch.argmax(logits, dim=-1)
+       #greedy_search_output = processor.decode(pred_ids)
+
+       # decode ctc output with beam search decode
+       beam_search_output = ngram_lm_model.decode(logits.cpu().detach().numpy(), beam_width=500)
+    
+       #print(greedy_search_output)
+       #print(beam_search_output)
+       return beam_search_output
+   ```
+9. Init run to speed up later queries
+   ```sh
+   speech_to_text("adapter_run-16k.wav")
    ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
