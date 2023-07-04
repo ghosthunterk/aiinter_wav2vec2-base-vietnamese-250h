@@ -5,19 +5,14 @@
     <img src="logo.png" alt="Logo" width="213" height="150">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Wav2vec2-Base-Vietnamese-250h</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Vietnamese Speech-To-Text API for ARI SIUBOT
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://huggingface.co/nguyenvulebinh/wav2vec2-base-vietnamese-250h"><strong>Original Document »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </div>
 
