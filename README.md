@@ -91,7 +91,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+List of things you need to do before using the API.
 * create environment
   ```sh
   conda create --name wav2vec2_git python=3.9
@@ -119,14 +119,24 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-3. Install NPM packages
+2. Import libraries
    ```sh
-   npm install
+   from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
+   import os, zipfile
+   from transformers.file_utils import cached_path, hf_bucket_url
+   from datasets import load_dataset
+   import soundfile as sf
+   import torch
+   import kenlm
+   from pyctcdecode import Alphabet, BeamSearchDecoderCTC, LanguageModel
+   import subprocess
+      
+   import flask
+   from flask import request
    ```
 4. Enter your API in `config.js`
    ```js
