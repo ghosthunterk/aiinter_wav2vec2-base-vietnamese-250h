@@ -123,7 +123,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-2. Import libraries
+2. import libraries
    ```sh
    from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
    import os, zipfile
@@ -138,11 +138,21 @@ _Below is an example of how you can instruct your audience on installing and set
    import flask
    from flask import request
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. set device
+   ```sh
+   DEVICE = "cuda"
    ```
-
+4. load model and tokenizer
+   ```sh
+   cache_dir = './cache/'
+   processor = Wav2Vec2Processor.from_pretrained("nguyenvulebinh/wav2vec2-base-vietnamese-250h")
+   model = Wav2Vec2ForCTC.from_pretrained("nguyenvulebinh/wav2vec2-base-vietnamese-250h")
+   lm_file = hf_bucket_url("nguyenvulebinh/wav2vec2-base-vietnamese-250h", filename='vi_lm_4grams.bin.zip')
+   lm_file = cached_path(lm_file,cache_dir=cache_dir)
+   with zipfile.ZipFile(lm_file, 'r') as zip_ref:
+     zip_ref.extractall(cache_dir)
+   lm_file = cache_dir + 'vi_lm_4grams.bin'
+   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
