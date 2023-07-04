@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://ailab.siu.edu.vn">
-    <img src="logo.png" alt="Logo" width="293" height="206">
+    <img src="logo.png" alt="Logo" width="213" height="150">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
