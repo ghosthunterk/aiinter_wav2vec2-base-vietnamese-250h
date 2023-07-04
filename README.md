@@ -1,0 +1,1 @@
+# aiinter_wav2vec2-base-vietnamese-250h
