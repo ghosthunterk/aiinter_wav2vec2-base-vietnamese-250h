@@ -134,7 +134,7 @@ _Below is an example of how you can instruct your audience on installing and set
    import kenlm
    from pyctcdecode import Alphabet, BeamSearchDecoderCTC, LanguageModel
    import subprocess
-      
+   #optional, for API calling   
    import flask
    from flask import request
    ```
@@ -237,7 +237,37 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Using below code for API call (REST method)
+   ```sh
+   app = flask.Flask("API for Speech To Text")
+   app.config["DEBUG"] = True
+   
+   @app.route('/audio_path', methods=['POST', 'GET'])
+   def updateCurrentCode():
+       default_path = ""
+       audio_path = ""
+       #if request.method == "POST":
+       #    audio_path = request.json['audio_path']
+       #else:
+       audio_path = request.args.get(audio_path)
+       audio_path = default_path + audio_path
+       new_audio_path = convert_audio(audio_path)
+       #print(audio_path)
+       text = speech_to_text(new_audio_path)
+  
+       response = flask.jsonify(text)
+       response.headers.add('Access-Control-Allow-Origin', '*')
+       response.headers.add('Access-Control-Allow-Credentials', 'true')
+       response.headers.add('Content-type','application/json; charset=utf-8')
+       response.success = True
+       return response
+
+   #run API on local port 8090 (127.0.0.1:8090)
+   if __name__ == '__main__':
+       app.run(host="0.0.0.0", port=8090, debug=True)
+       #from waitress import serve
+       #serve(app, host='0.0.0.0', port=8090)
+   ```
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
