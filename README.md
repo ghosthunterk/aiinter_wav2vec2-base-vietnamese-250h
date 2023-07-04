@@ -92,17 +92,28 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+* create environment
   ```sh
-  npm install npm@latest -g
+  conda create --name wav2vec2_git python=3.9
+  conda activate wav2vec2_git
+  mkdir wav2vec2_git
+  cd wav2vec2_git
   ```
-* npm
+* install correct version of transformers, soundfile datasets and pyctcdecode
   ```sh
-  npm install npm@latest -g
+  pip install transformers==4.9.2 soundfile datasets==1.11.0 pyctcdecode==v0.1.0
   ```
-* npm
+* install KenLM language model
   ```sh
-  npm install npm@latest -g
+  pip install https://github.com/kpu/kenlm/archive/master.zip
+  ```
+* install torch for greedy decode
+  ```sh
+  pip install torch
+  ```
+* install flask for API call
+  ```sh
+  pip install flask
   ```
 ### Installation
 
