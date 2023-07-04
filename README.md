@@ -21,16 +21,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Vietnamese Speech-To-Text API module for local use in [SIU AILAB](www.ailab.siu.edu.vn)
+Vietnamese Speech-To-Text API module for local use in [SIU AILAB](www.ailab.siu.edu.vn).
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+Functions:
+* Convert Vietnamese's samples of speech to corresponding text content.
+* Host and run API locally.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+Local use only.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
