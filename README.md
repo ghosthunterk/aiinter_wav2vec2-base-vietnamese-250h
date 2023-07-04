@@ -21,9 +21,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Vietnamese Speech-To-Text API module for local use in [SIU AILAB](www.ailab.siu.edu.vn)
 
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
@@ -38,14 +36,8 @@ Use the `BLANK_README.md` to get started.
 
 
 <!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you can set up this project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
-List of things you need to do before using the API.
 * create environment
   ```sh
   conda create --name wav2vec2_git python=3.9
@@ -70,8 +62,6 @@ List of things you need to do before using the API.
   pip install flask
   ```
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Clone the repo
    ```sh
@@ -241,8 +231,6 @@ Project Link: [https://github.com/ghosthunterk/aiinter_wav2vec2-base-vietnamese-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
 * [Vietnamese end-to-end speech recognition using wav2vec 2.0](https://huggingface.co/nguyenvulebinh/wav2vec2-base-vietnamese-250h)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
