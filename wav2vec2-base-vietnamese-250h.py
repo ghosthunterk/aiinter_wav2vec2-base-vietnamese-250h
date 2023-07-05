@@ -18,10 +18,12 @@ DEVICE = "cuda"
 cache_dir = './cache/'
 processor = Wav2Vec2Processor.from_pretrained("nguyenvulebinh/wav2vec2-base-vietnamese-250h")
 model = Wav2Vec2ForCTC.from_pretrained("nguyenvulebinh/wav2vec2-base-vietnamese-250h")
-lm_file = hf_bucket_url("nguyenvulebinh/wav2vec2-base-vietnamese-250h", filename='vi_lm_4grams.bin.zip')
-lm_file = cached_path(lm_file,cache_dir=cache_dir)
-with zipfile.ZipFile(lm_file, 'r') as zip_ref:
-    zip_ref.extractall(cache_dir)
+lm_file = ""
+if not (os.path.exists(cache_dir+'vi_lm_4grams.bin')):
+    lm_file = hf_bucket_url("nguyenvulebinh/wav2vec2-base-vietnamese-250h", filename='vi_lm_4grams.bin.zip')
+    lm_file = cached_path(lm_file,cache_dir=cache_dir)
+    with zipfile.ZipFile(lm_file, 'r') as zip_ref:
+        zip_ref.extractall(cache_dir)
 lm_file = cache_dir + 'vi_lm_4grams.bin'
 
 #Load n-gram LM
